@@ -3,6 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": {
+        "fr": {
+          "translation": "src/locale/messages.fr.xlf",
+        }
+      }
+    },
     "internationalize-localize": {
       "projectType": "application",
       "schematics": {
@@ -17,6 +25,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "i18nMissingTranslation": "error",
             "outputPath": "dist/internationalize-localize",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -59,7 +69,10 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+            },
+            "fr": {
+              "localize": ["fr"]
             }
           },
           "defaultConfiguration": "production"
@@ -72,7 +85,10 @@
             },
             "development": {
               "browserTarget": "internationalize-localize:build:development"
-            }
+            },
+            "fr": {
+              "browserTarget": "internationalize-localize:build:development,fr"
+            },
           },
           "defaultConfiguration": "development"
         },
